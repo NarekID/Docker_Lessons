@@ -1,0 +1,6 @@
+[submodule "Homework1/Easy/flask"]
+	path = Homework1/Easy/flask
+	url = https://github.com/pallets/flask.git
+[submodule "Homework1/Hard/flask"]
+	path = Homework1/Hard/flask
+	url = https://github.com/pallets/flask.git
