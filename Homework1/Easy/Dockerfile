@@ -6,4 +6,4 @@ ENV FLASK_APP="flaskr"
 ENV FLASK_ENV="development"
 EXPOSE 5000
 RUN flask init-db
-ENTRYPOINT ["flask", "run", "--host=0.0.0.0"]]
+ENTRYPOINT ["flask", "run", "--host=0.0.0.0"]
