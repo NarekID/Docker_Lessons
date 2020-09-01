@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db:
+    image: 'mysql:8.0.21'
+    restart: always
+    environment:
+      MYSQL_DATABASE: db_name
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_password
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    ports:
+      - 3000:3306
+    volumes:
+      - mysql_vol:/var/lib/mysql
+    networks:
+      - wordpress_net
+  wordpress:
+    image: 'wordpress:latest'
+    restart: unless-stopped
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: db_user
+      WORDPRESS_DB_PASSWORD: db_password
+      WORDPRESS_DB_NAME: db_name
+    ports:
+      - 8000:80
+    volumes:
+      - wordpress_vol:/var/www/html
+    networks:
+      - wordpress_net
+    depends_on:
+      - db
+volumes:
+  wordpress_vol:
+  mysql_vol:
+networks:
+  wordpress_net:
+     driver: bridge
